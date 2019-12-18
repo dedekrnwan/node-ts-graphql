@@ -2,7 +2,7 @@ import * as express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import depthLimit from "graphql-depth-limit"
 
-import userModules from "./../modules/user";
+import userModules from "../modules/user/user.graphql";
 
 export default (app: express.Application): Promise<express.Application> => new Promise<express.Application>(async (resolve, reject) => {
     try {

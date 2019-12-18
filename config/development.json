@@ -1,13 +1,24 @@
 {
-    "server": {
-        "name": "Graphql",
-        "port": 3000,
-        "another_port": [
-          8080,
-          80,
-          3000,
-          4000,
-          5000
-        ]
+  "server": {
+      "name": "Graphql",
+      "port": 3000,
+      "another_port": [
+        8080,
+        80,
+        3000,
+        4000,
+        5000
+      ],
+      "timezone": "+07:00"
+  },
+  "database": [
+    {
+      "host": "127.0.0.1",
+      "db": "graphql",
+      "username": "postgres",
+      "password": "root",
+      "port": 5432,
+      "dialect": "postgres"
     }
+  ]
 }
