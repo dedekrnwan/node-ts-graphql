@@ -1,7 +1,6 @@
 import User from "./user.model"
 import bcryptjs from 'bcryptjs';
 
-
 export interface IUser {
     id?: number
 
@@ -43,7 +42,7 @@ export interface IUser {
 }
 
 export default class UserService {
-    create = (args:IUser): Promise<any> => new Promise<User>(async (resolve, reject) => {
+    create = (args:IUser): Promise<User> => new Promise<User>(async (resolve, reject) => {
         try {
             if(await User.count({
                 where: {
@@ -58,7 +57,7 @@ export default class UserService {
                     const user = await User.create({
                         ...args,
                         password: await bcryptjs.hashSync(args.password, await bcryptjs.genSaltSync(10)),
-                        birthdate: Date.parse(args.birthdate.toString() + ' 00:00:00')
+                        birthdate: Date.parse(args.birthdate.toString())
                     })
                     resolve(user)
                 }else{
