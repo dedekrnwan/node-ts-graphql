@@ -1,8 +1,9 @@
 import * as express from 'express';
-import { ApolloServer } from 'apollo-server-express';
+import { ApolloServer, ApolloError, AuthenticationError } from 'apollo-server-express';
 import depthLimit from "graphql-depth-limit"
 
 import userModules from "../modules/user/user.graphql";
+import auth from '../utils/auth';
 
 export default (app: express.Application): Promise<express.Application> => new Promise<express.Application>(async (resolve, reject) => {
     try {
@@ -12,7 +13,18 @@ export default (app: express.Application): Promise<express.Application> => new P
             ],
             validationRules: [depthLimit(7)],
             playground: true,
-            introspection: true
+            introspection: true,
+            context: async ({
+                req
+            }) => {
+                try {
+                    const user = await auth.authenticated(req)
+                    if(!user) throw new AuthenticationError('Access denied, Token is invalid')
+                    return { user }
+                } catch (error) {
+                    throw new AuthenticationError(error.message)
+                }
+            }
         })
         server.applyMiddleware({
             app,

@@ -1,20 +1,40 @@
 {
   "server": {
-      "name": "Graphql",
-      "port": 3000,
-      "another_port": [
-        8080,
-        80,
-        3000,
-        4000,
-        5000
-      ],
-      "timezone": "+07:00"
+    "name": "Graphql",
+    "port": 4000,
+    "another_port": [
+      8080,
+      80,
+      3000,
+      4000,
+      5000
+    ],
+    "timezone": "+07:00"
+  },
+  "jwt": {
+    "options": {
+      "create": {
+        "issuer": "Typescript",
+        "subject": "noreply@ts.com",
+        "audience": "http://localhost/",
+        "expiresIn": "12h",
+        "algorithm": "RS256"
+      },
+      "verify": {
+        "issuer": "Typescript",
+        "subject": "noreply@ts.com",
+        "audience": "http://localhost/",
+        "expiresIn": "12h",
+        "algorithm": [
+          "RS256"
+        ]
+      }
+    }
   },
   "database": [
     {
       "host": "127.0.0.1",
-      "db": "graphql",
+      "db": "postgres",
       "username": "postgres",
       "password": "root",
       "port": 5432,

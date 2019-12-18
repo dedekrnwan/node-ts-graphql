@@ -26,8 +26,8 @@ const server = (options: IServerOptions): Promise<any> => new Promise<any>(async
 
 		const database = await connection.authenticate()
 		global.logger.info('Connection to database successfully connected');
-		await initializeTable()
-		global.logger.info('Database has been initialize')
+		// await initializeTable()
+		// global.logger.info('Database has been initialize')
 
 		resolve({
 			app,
