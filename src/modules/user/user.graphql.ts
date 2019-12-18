@@ -50,7 +50,7 @@ const typeDefs = gql`
 
 const resolvers = {
     Query: {
-        user: async (_:void, { id } : { id: number } ) => {
+        user: async (_:void, { id } : { id: number }, context ) => {
             try {
                 const user = await User.findOne({
                     where: {

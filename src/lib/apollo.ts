@@ -14,17 +14,17 @@ export default (app: express.Application): Promise<express.Application> => new P
             validationRules: [depthLimit(7)],
             playground: true,
             introspection: true,
-            context: async ({
-                req
-            }) => {
-                try {
-                    const user = await auth.authenticated(req)
-                    if(!user) throw new AuthenticationError('Access denied, Token is invalid')
-                    return { user }
-                } catch (error) {
-                    throw new AuthenticationError(error.message)
-                }
-            }
+            // context: async ({
+            //     req
+            // }) => {
+            //     try {
+            //         const user = await auth.authenticated(req)
+            //         if(!user) throw new AuthenticationError('Access denied, Token is invalid')
+            //         return { user }
+            //     } catch (error) {
+            //         throw new AuthenticationError(error.message)
+            //     }
+            // }
         })
         server.applyMiddleware({
             app,

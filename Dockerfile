@@ -19,7 +19,7 @@ RUN npm run build
 # RUN rm -rf /var/www/app/dist/*
 
 
-RUN mkdir /var/www/app/src/utils/key
+# RUN mkdir /var/www/app/src/utils/key
 COPY ./src/utils/key/* /var/www/app/src/utils/key/
 
 ENTRYPOINT [ "/var/www/app/scripts/start.sh" ]

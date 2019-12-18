@@ -4,9 +4,9 @@ import WinstonElasticsearch from 'winston-elasticsearch';
 import { Client } from '@elastic/elasticsearch';
 import config from 'config';
 
-// const clientElastic = new Client({
-// 	node: config.get('services.elasticsearch.host'),
-// });
+const clientElastic = new Client({
+	node: config.get('services.elasticsearch.host'),
+});
 
 const transport = {
 	console: new winston.transports.Console({
@@ -74,12 +74,12 @@ const transport = {
 		// 	),
 		// }),
 	],
-	// elastic: [
-	// 	new WinstonElasticsearch({
-	// 		client: clientElastic,
-	// 		format: winston.format.json(),
-	// 	}),
-	// ],
+	elastic: [
+		new WinstonElasticsearch({
+			client: clientElastic,
+			format: winston.format.json(),
+		}),
+	],
 };
 
 const logger = winston.createLogger({
@@ -94,7 +94,7 @@ const logger = winston.createLogger({
 	transports: [
 		transport.console,
 		...transport.file,
-		// ...transport.elastic,
+		...transport.elastic,
 	],
 });
 winston.addColors({
@@ -107,7 +107,7 @@ export const expressLogger = expressWinston.logger({
 	transports: [
 		transport.console,
 		...transport.file,
-		// ...transport.elastic,
+		...transport.elastic,
 	],
 });
 

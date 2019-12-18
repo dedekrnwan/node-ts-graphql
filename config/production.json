@@ -11,6 +11,26 @@
         ],
         "timezone": "+07:00"
     },
+    "jwt": {
+      "options": {
+        "create": {
+          "issuer": "Typescript",
+          "subject": "noreply@ts.com",
+          "audience": "http://localhost/",
+          "expiresIn": "12h",
+          "algorithm": "RS256"
+        },
+        "verify": {
+          "issuer": "Typescript",
+          "subject": "noreply@ts.com",
+          "audience": "http://localhost/",
+          "expiresIn": "12h",
+          "algorithm": [
+            "RS256"
+          ]
+        }
+      }
+    },
     "database": [
       {
         "host": "database",
