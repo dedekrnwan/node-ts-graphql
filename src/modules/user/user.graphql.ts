@@ -1,6 +1,7 @@
 import { gql, ApolloError } from 'apollo-server-express';
 import UserService from "./user.service";
 import { IUser } from "./user.service";
+import User from './user.model';
 
 const typeDefs = gql`
 
@@ -31,6 +32,7 @@ const typeDefs = gql`
     }
 
     type User {
+        id: ID
         name: String!
         username: String!
         email: String!
@@ -48,27 +50,26 @@ const typeDefs = gql`
 
 const resolvers = {
     Query: {
-        user(_:void, { id }:any ) {
-            return {
-                id: id, 
-                name: 'testing',
-                email: 'teting@aed.com'
+        user: async (_:void, { id } : { id: number } ) => {
+            try {
+                const user = await User.findOne({
+                    where: {
+                        id
+                    }
+                })
+                return user || new ApolloError(`User with id ${id} not found`)
+            } catch (error) {
+                throw new ApolloError(error)
             }
         },
-        users() {
-            return [
-                {
-                    id: Math.round(Math.random() * 1000000), 
-                    name: 'testing',
-                    email: 'teting@aed.com'
-                },
-                {
-                    id: Math.round(Math.random() * 1000000), 
-                    name: 'testing2',
-                    email: 'teting2@aed.com'
-                },
-            ]
-        }
+        users: async (_:void) => {
+            try {
+                const users = await User.findAll()
+                return users || new ApolloError(`No user data in database`)
+            } catch (error) {
+                throw new ApolloError(error)
+            }
+        },
     },
     Mutation: {
         createUser: async (_:void, { args } : { args : IUser}) => {

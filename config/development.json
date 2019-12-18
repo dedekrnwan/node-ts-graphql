@@ -20,5 +20,17 @@
       "port": 5432,
       "dialect": "postgres"
     }
-  ]
+  ],
+  "services": {
+    "apm-server": {
+      "host": "http://apm-server:8200",
+      "user": "",
+      "pass": ""
+    },
+    "elasticsearch": {
+      "host": "http://elasticsearch:9200",
+      "user": "",
+      "pass": ""
+    }
+  }
 }

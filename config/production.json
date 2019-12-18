@@ -1,0 +1,36 @@
+{
+    "server": {
+        "name": "Graphql",
+        "port": 4000,
+        "another_port": [
+          8080,
+          80,
+          3000,
+          4000,
+          5000
+        ],
+        "timezone": "+07:00"
+    },
+    "database": [
+      {
+        "host": "database",
+        "db": "postgres",
+        "username": "postgres",
+        "password": "root",
+        "port": 5432,
+        "dialect": "postgres"
+      }
+    ],
+    "services": {
+      "apm-server": {
+        "host": "http://apm-server:8200",
+        "user": "",
+        "pass": ""
+      },
+      "elasticsearch": {
+        "host": "http://elasticsearch:9200",
+        "user": "",
+        "pass": ""
+      }
+    }
+  }

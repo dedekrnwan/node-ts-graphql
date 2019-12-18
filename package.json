@@ -2,12 +2,15 @@
   "name": "graphqlplate",
   "version": "1.0.0",
   "description": "Graphql boilerplate using express, apollo",
-  "main": "./dist/server.js",
+  "main": "./dist/lib/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf ./dist/* && tsc",
     "start": "node .",
-    "watch": "nodemon"
+    "watch": "nodemon",
+    "production": "npm run start",
+    "dev": "npm run build && node --inspect=9230 -r . ",
+    "staging": "npm run start"
   },
   "keywords": [
     "express",
@@ -27,9 +30,6 @@
     "@types/helmet": "0.0.45",
     "@types/node": "^12.12.18",
     "@types/node-fetch": "^2.5.4",
-    "graphql-depth-limit": "^1.1.0",
-    "graphql-import": "^0.7.1",
-    "graphql-import-node": "0.0.4",
     "nodemon": "^2.0.2",
     "ts-node": "^8.5.4",
     "typescript": "^3.7.3"
@@ -44,6 +44,9 @@
     "express": "^4.17.1",
     "express-winston": "^4.0.1",
     "graphql": "^14.5.8",
+    "graphql-depth-limit": "^1.1.0",
+    "graphql-import": "^0.7.1",
+    "graphql-import-node": "0.0.4",
     "helmet": "^3.21.2",
     "ncp": "^2.0.0",
     "pg": "^7.14.0",

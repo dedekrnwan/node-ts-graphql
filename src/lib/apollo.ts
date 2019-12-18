@@ -11,6 +11,8 @@ export default (app: express.Application): Promise<express.Application> => new P
                 userModules
             ],
             validationRules: [depthLimit(7)],
+            playground: true,
+            introspection: true
         })
         server.applyMiddleware({
             app,
