@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@elastic/elasticsearch": "^7.5.0",
-    "apollo-server-express": "^2.9.13",
+    "apollo-server-express": "^2.14.2",
     "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
     "config": "^3.2.4",
